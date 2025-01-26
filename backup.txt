@@ -1,0 +1,7 @@
+exec /usr/bin/qutebrowser \
+    --basedir /config/xdg/qutebrowser \
+    --qt-flag disable-gpu \
+    --qt-flag disable-software-rasterizer \
+    --qt-flag no-sandbox \
+    --qt-flag disable-dev-shm-usage \
+    "$@"
