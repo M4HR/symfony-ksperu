@@ -32,8 +32,8 @@ resource "coder_agent" "main" {
   os             = "linux"
   startup_script = <<-EOT
     set -e
-
     /init >/tmp/init.log 2>&1 &
+    /recursos/code-server/bin/code-server --auth none --port 13337 >/tmp/code-server.log 2>&1 &
   EOT
   dir            = "/workspaces"
   env = {
@@ -64,7 +64,7 @@ resource "coder_app" "code-server" {
   agent_id     = coder_agent.main.id
   slug         = "code-server"
   display_name = "code-server"
-  url          = "http://localhost:13337/?folder=/home/${local.username}"
+  url          = "http://localhost:13337/?folder=/workspaces"
   icon         = "/icon/code.svg"
   subdomain    = false
   share        = "owner"
